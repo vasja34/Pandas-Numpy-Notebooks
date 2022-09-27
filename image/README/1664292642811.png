@@ -1,0 +1,181 @@
+# Project Name
+
+> Short introduction or overview that explains **what** the project is. This description should match descriptions added for package managers (Gemspec, package.json, etc.)
+
+## Description, Features or Example
+
+GUI implementation of the Wordle game using the PySimpleGUI library
+
+Home: https://github.com/PySimpleGUI/PySimpleGUI
+
+I don't really like frontend but I really like the idea of giving my backend/terminal programs something more pleasurable to interact with.
+
+That's when I came across [PySimpleGUI](https://github.com/PySimpleGUI/PySimpleGUI), a simple solution to quickly give my programs an interactive front.
+But in checking it out I found I wanted more and had an idea:
+It would be nice if PySimpleGUI and therefore GUI making was in itself more interactive.
+
+And that's how SimpleGUIBuilder came to be:
+A GUI for creating/designing GUI's layouts for PySimpleGUI, made with PySimpleGUI.
+
+I hope this will be useful to people :)
+
+This integrates much of the logic in my wordle_cli program and was done specficially to learn a GUI library.
+
+## Preview
+
+**Main UI**
+
+![1548333470369](assets/Pomodoro.png)
+
+**SubMain UI**
+
+![1548333772657](assets/Win10Toast.png)
+
+## Introduction
+
+Wordle is a word guessing game.  Words are restricted to five letters and players get six guesses.  If a letter is in the correct spot in the answer, it will turn green.  If it is in the answer, but in the wrong spot it will turn yellow.  If it is not in the answer it will turn gray.  Multiples of the same letter (such as the o's in color) will be colored green or yellow as appropriate if the answer also contains multiple instances of the letter, otherwise the duplicates will be gray.
+
+Additional information can be found here: https://en.wikipedia.org/wiki/Wordle
+
+![image](https://user-images.githubusercontent.com/106843224/186750537-2a1764eb-61ce-4b28-8811-04f6cbf3a544.png)
+
+## Dependencies
+
+- Python3
+- Imports: argparse, sys, json, datetime
+- External imports: matplotlib, PySimpleGUI
+
+* Install the external requirments via terminal: 'pip install -r requirements.txt'
+
+## Installation
+
+There is none :) just download the file from a release and run it.
+
+Don't download from anywhere else (should it appear somewhere else it's not mine).
+
+Exec made with pyinstaller
+Installing `pysimpleguiweb` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+
+```
+conda config --add channels conda-forge
+```
+
+Once the `conda-forge` channel has been enabled, `pysimpleguiweb` can be installed with:
+
+```
+conda install pysimpleguiweb
+```
+
+It is possible to list all of the versions of `pysimpleguiweb` available on your platform with:
+
+```
+conda search pysimpleguiweb --channel conda-forge
+```
+
+## Requirements
+
+```shell
+pip install PySimpleGUI
+pip install win10toast
+pip install pypiwin32
+```
+
+## Run or Usage
+
+```shell
+python Pomodoro.py
+```
+
+## How it works
+
+Quick disclaimer:
+With this being a tool for making GUI layouts for PySimpleGUI, you will need to know the basics of how PySimpleGUI works.
+But worry not, quick experimentation with the SimpleGUIBuilder will also help you in learning it faster. And as advertised in the name, it should be simple ;)
+I recommend you start [here](https://pysimplegui.trinket.io/demo-programs#/demo-programs/the-basic-pysimplegui-program) and then use
+[PySimpleGUI Docs](https://pysimplegui.readthedocs.io/en/latest/) as needed.
+
+Lets get on with the show. There's mainly 2 steps in creating a GUI with PySimpleGUI:
+
+1. Design the GUI, by creating it's correspondent layout;
+2. Create the window and map your code to the GUI through the event loop.
+
+SimpleGUIBuilder will help you with the 1st step, with designing the GUI's layout for PySimpleGUI.
+
+It's easier to show then to explain here, so I made a quick video where I create [this simple GUI](https://pysimplegui.trinket.io/demo-programs#/demo-programs/the-basic-pysimplegui-program).
+(video got downgraded to gif for now, I might still make a video later if i can)
+
+![](SimpleGUIBuilder.gif)
+
+Example layout used:
+
+```
+[ 
+  [sg.Text('This is a very basic PySimpleGUI layout')],
+  [sg.Input()],
+  [sg.Button('Button'), sg.Button('Exit')]
+]
+```
+
+## Reference
+
+- [jxson](https://gist.github.com/jxson) - [README.md](https://gist.github.com/jxson/1784669)
+- [gistfrojd](https://gist.github.com/gistfrojd) - [README.md](https://gist.github.com/gistfrojd/5fcd3b70949ac6376f66)
+
+Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
+
+### IMPORTANT NOTES:**
+
+* SimpleGUIBuilder will automatically save your work every 3 minutes and when you close the window. It will save to an autosave.txt file in the same folder of the program. When starting, it will also autoload from the autosave file if there is one.
+* If you import an empty layout, [] , it will basically clear the current layout being built. Should be useful instead of manually deleting everything.
+* Don't forget to press **Apply Properties** to save your property changes.
+
+## More info
+
+Hopefully the SimpleGUIBuilder's GUI is intuitive and easy to pick up, but I will also explain it here.
+
+There's 3 huge sections:
+
+* **Left - Element Tree**: It shows the layout's structure in a tree form. It's where you can select elements.
+* **Middle - Element Action**: Where you can choose to add/remove/move an element.
+* **Right - Element Properties**: It's shows all of the element's properties. Here you can also change a property and click **Apply Properties** to apply.
+  You can think of properties like the initial arguments of an element, because that's exactly what it is.
+
+On the top you have a bunch of action buttons:
+
+* **About**: The about :)
+* **Preview**: A truly magical button that immediately shows you a preview of how the GUI will look like for the layout you're building.
+* **Import**: Give it a layout, like the one above, and it will import it.
+* **Export**: Gives you the layout for the GUI you built.
+* **Save**: Exports the layout and saves it into a file.
+* **Load**: Imports the layout from a file.
+* **Setup**: Creates a file based on this [template](https://pysimplegui.trinket.io/demo-programs#/demo-programs/the-basic-pysimplegui-program) but with your layout already in it. Should help you quickly get onto the 2nd step mentioned in the previous section ("Create the window and map your code to the GUI").
+* **Apply Properties**: When you change the properties of an element you click here, it will apply and save then. You can then immediately see the changes on the GUI with the "Preview" button (depending on the property you change actually doing a visible change ofc).
+
+## Support
+
+If you find this useful consider supporting and buying me coffee :) https://www.buymeacoffee.com/MMartins
+
+`<a href="https://www.buymeacoffee.com/MMartins"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=MMartins&button_colour=5F7FFF&font_colour=ffffff&font_family=Lato&outline_colour=000000&coffee_colour=FFFFFF">``</a>`
+
+And this wouldn't be possible without PySimpleGUI, so they also really deserve it ;) https://www.buymeacoffee.com/PySimpleGUI
+
+## Future features
+
+None
+
+## Contributors
+
+Let people know how they can dive into the project, include important links to things like issue trackers, irc, twitter accounts if applicable.
+
+## Author
+
+Vadim M - vasja34@gmail.com
+
+## Acknowledgments
+
+This is my software recreation the web-based Wordle game.  Wordle was originally created by Josh Wardle and is now owned and published by the New York Times.
+
+## License
+
+This software is licensed under the MIT License.  See license.txt for details.
+[MIT](LICENSE)
